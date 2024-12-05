@@ -1,0 +1,68 @@
+﻿@model StudentWebAppPortal.Models.Student
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<h4 class="text-secondary">Student Details</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form asp-action="Edit" class="p-4 shadow-sm rounded bg-light">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+            <div class="mb-3">
+                <label asp-for="id" class="form-label"></label>
+                <input asp-for="id" class="form-control" readonly />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="studentName" class="form-label"></label>
+                <input asp-for="studentName" class="form-control" placeholder="Enter student name" />
+                <span asp-validation-for="studentName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="studentGender" class="form-label"></label>
+                <select asp-for="studentGender" class="form-select">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <span asp-validation-for="studentGender" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="studentAge" class="form-label"></label>
+                <input asp-for="studentAge" class="form-control" type="number" placeholder="Enter age" />
+                <span asp-validation-for="studentAge" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="standard" class="form-label"></label>
+                <input asp-for="standard" class="form-control" placeholder="Enter class/standard" />
+                <span asp-validation-for="standard" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="fatherName" class="form-label"></label>
+                <input asp-for="fatherName" class="form-control" placeholder="Enter father's name" />
+                <span asp-validation-for="fatherName" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <input type="submit" value="Save" class="btn btn-primary px-4" />
+                <a asp-action="Index" class="btn btn-secondary px-4">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

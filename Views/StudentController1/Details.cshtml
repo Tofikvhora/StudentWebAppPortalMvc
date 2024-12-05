@@ -1,0 +1,62 @@
+﻿@model StudentWebAppPortal.Models.Student
+
+@{
+    ViewData["Title"] = "Student Details";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h4>Student Details</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4 text-secondary">
+                @Html.DisplayNameFor(model => model.id)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.id)
+            </dd>
+
+            <dt class="col-sm-4 text-secondary">
+                @Html.DisplayNameFor(model => model.studentName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.studentName)
+            </dd>
+
+            <dt class="col-sm-4 text-secondary">
+                @Html.DisplayNameFor(model => model.studentGender)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.studentGender)
+            </dd>
+
+            <dt class="col-sm-4 text-secondary">
+                @Html.DisplayNameFor(model => model.studentAge)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.studentAge)
+            </dd>
+
+            <dt class="col-sm-4 text-secondary">
+                @Html.DisplayNameFor(model => model.standard)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.standard)
+            </dd>
+
+            <dt class="col-sm-4 text-secondary">
+                @Html.DisplayNameFor(model => model.fatherName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.fatherName)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <a asp-action="Edit" asp-route-id="@Model.id" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

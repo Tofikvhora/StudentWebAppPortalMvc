@@ -1,0 +1,91 @@
+﻿@model IPagedList<StudentWebAppPortal.Models.Student>
+@using X.PagedList
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center mb-4">Student List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Add New Student</a>
+</p>
+
+@{
+    if (TempData["insert_message"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> @TempData["insert_message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    if (TempData["update_message"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> @TempData["update_message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    if (TempData["delete_message"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> @TempData["delete_message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+
+<table class="table table-hover table-bordered shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model[0].id)</th>
+            <th>@Html.DisplayNameFor(model => model[0].studentName)</th>
+            <th>@Html.DisplayNameFor(model => model[0].studentGender)</th>
+            <th>@Html.DisplayNameFor(model => model[0].studentAge)</th>
+            <th>@Html.DisplayNameFor(model => model[0].standard)</th>
+            <th>@Html.DisplayNameFor(model => model[0].fatherName)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.id)</td>
+                <td>@Html.DisplayFor(modelItem => item.studentName)</td>
+                <td>@Html.DisplayFor(modelItem => item.studentGender)</td>
+                <td>@Html.DisplayFor(modelItem => item.studentAge)</td>
+                <td>@Html.DisplayFor(modelItem => item.standard)</td>
+                <td>@Html.DisplayFor(modelItem => item.fatherName)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-sm btn-info text-white">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-center mt-3">
+    @Html.PagedListPager(
+            Model,
+            page => Url.Action("Index", new { page }),
+            new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "« First",
+        LinkToPreviousPageFormat = "‹ Previous",
+        LinkToNextPageFormat = "Next ›",
+        LinkToLastPageFormat = "Last »",
+        ContainerDivClasses = new[] { "pagination-container" }, // Fixed here
+        UlElementClasses = new[] { "pagination", "justify-content-center" }, // Fixed here
+        PageClasses = new[] { "page-link" }
+    })
+</div>
